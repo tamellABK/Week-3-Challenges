@@ -13,6 +13,7 @@ int main()
     chrono::steady_clock::time_point timerStart, timerEnd;
     chrono::duration<double> elapsedTime;
 
+    // Random seed based on time since epoch
     srand(chrono::steady_clock::now().time_since_epoch().count());
 
     cout << "Choose size of the array to sort: ";
@@ -33,6 +34,9 @@ int main()
 
     elapsedTime = timerEnd - timerStart;
     cout << "\nSorting Elapsed Time: " << elapsedTime.count() << " Seconds!\n";
+
+    delete[] generatedArray;
+    generatedArray = nullptr;
 }
 
 void InsertionSort(int arrayToSort[], int sizeOfArray)
