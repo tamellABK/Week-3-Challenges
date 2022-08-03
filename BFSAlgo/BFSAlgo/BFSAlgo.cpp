@@ -6,7 +6,9 @@
 using namespace std;
 
 void BFS(int startingNode,int goalNode, vector<vector<int>>& adjMatrix);
-char letterEquiv(int val);
+vector<int> FindPath(int startingNode, int goalNode, map<int, int> cameFrom);
+void PrintVector(vector<int> vectorToPrint);
+char LetterEquiv(int val);
 
 int main()
 {
@@ -19,13 +21,13 @@ int main()
         {1,0,1,0}
     };
 
-    // From A, Find C
-    BFS(0, adjMatrix.size()-2, adjMatrix);
+    // From A, Find C in adjMatrix
+    BFS(0, 2, adjMatrix);
 }
 
 void BFS(int startingNode, int goalNode, vector<vector<int>>& adjMatrix)
 {
-    cout << "BFS From Node " << letterEquiv(startingNode) << " to Node " << letterEquiv(goalNode) << endl;
+    cout << "BFS From Node " << LetterEquiv(startingNode) << " to Node " << LetterEquiv(goalNode) << endl;
 
     // Create Visited Vector to hold if that 'node' has been visited
     vector<bool> visited;
@@ -64,31 +66,40 @@ void BFS(int startingNode, int goalNode, vector<vector<int>>& adjMatrix)
     }
 
     // Find Goal Node
-    currentNode = goalNode;
-    vector<int> path;
+    vector<int> path = FindPath(startingNode, goalNode, cameFrom);
 
+    // Print
+    PrintVector(path);
+}
+
+vector<int> FindPath(int startingNode, int goalNode, map<int,int> cameFrom)
+{
+    vector<int> pathToTake;
+    int currentNode = goalNode;
     // Work backwords from goalNode and look at previous Node mappings to startingNode
     while (currentNode != startingNode)
     {
-        path.push_back(currentNode);
+        pathToTake.push_back(currentNode);
         currentNode = cameFrom[currentNode];
     }
 
     // Push final Node and Reverse vector
-    path.push_back(currentNode);
-    reverse(path.begin(), path.end());
+    pathToTake.push_back(currentNode);
+    reverse(pathToTake.begin(), pathToTake.end());
+    return pathToTake;
+}
 
-    // Print
-    for (auto i : path)
+void PrintVector(vector<int> vectorToPrint)
+{
+    for (auto i : vectorToPrint)
     {
-        cout << letterEquiv(i);
-        if(i != path[path.size()-1]) cout << " -> ";
+        cout << LetterEquiv(i);
+        if (i != vectorToPrint[vectorToPrint.size() - 1]) cout << " -> ";
     }
-    
 }
 
 // Misc Function to showcase letter equivalents for array positions
-char letterEquiv(int val)
+char LetterEquiv(int val)
 {
     return (char)(val + 65);
 }
