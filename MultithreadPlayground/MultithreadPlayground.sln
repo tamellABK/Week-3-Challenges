@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32630.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MultithreadPlayground", "MultithreadPlayground\MultithreadPlayground.vcxproj", "{150B4D42-0C41-48C1-9B71-917207254D83}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{150B4D42-0C41-48C1-9B71-917207254D83}.Debug|x64.ActiveCfg = Debug|x64
+		{150B4D42-0C41-48C1-9B71-917207254D83}.Debug|x64.Build.0 = Debug|x64
+		{150B4D42-0C41-48C1-9B71-917207254D83}.Debug|x86.ActiveCfg = Debug|Win32
+		{150B4D42-0C41-48C1-9B71-917207254D83}.Debug|x86.Build.0 = Debug|Win32
+		{150B4D42-0C41-48C1-9B71-917207254D83}.Release|x64.ActiveCfg = Release|x64
+		{150B4D42-0C41-48C1-9B71-917207254D83}.Release|x64.Build.0 = Release|x64
+		{150B4D42-0C41-48C1-9B71-917207254D83}.Release|x86.ActiveCfg = Release|Win32
+		{150B4D42-0C41-48C1-9B71-917207254D83}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F50D5A55-5D3F-486B-97BB-A5645D5EED8B}
+	EndGlobalSection
+EndGlobal
