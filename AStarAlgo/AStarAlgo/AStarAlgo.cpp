@@ -6,8 +6,10 @@ using namespace std;
 
 int const DIMENSION_SIZE = 4;
 
-int minimumDist(int dist[], bool visited[]);
 void Dijkstra(int matrix[DIMENSION_SIZE][DIMENSION_SIZE], int nodeToFind);
+int MinimumDist(int dist[], bool visited[]);
+void PrintNodeDistances(int dist[]);
+char LetterEquiv(int val);
 
 int main()
 {
@@ -48,7 +50,7 @@ void Dijkstra(int matrix[DIMENSION_SIZE][DIMENSION_SIZE], int startingNode)
 
     for (int i = 0; i < DIMENSION_SIZE; i++)
     {
-        int min = minimumDist(dist, visited);
+        int min = MinimumDist(dist, visited);
         visited[min] = true;
         for (int i = 0; i < DIMENSION_SIZE; i++)
         {
@@ -58,18 +60,11 @@ void Dijkstra(int matrix[DIMENSION_SIZE][DIMENSION_SIZE], int startingNode)
                 dist[i] = dist[min] + matrix[min][i];
         }
     }
-    cout << "Node Distance From Starting Node" << endl;
-
-    // Tying Array Space to Ascii value
-    for (int i = 0; i < DIMENSION_SIZE; i++)
-    {
-        char letter = 65 + i;
-        cout << letter << "   " << dist[i] << endl;
-    }
+    PrintNodeDistances(dist);
 }
 
 // Returns the Index for the node with minimum distance
-int minimumDist(int dist[], bool visited[])
+int MinimumDist(int dist[], bool visited[])
 {
     int min = INT_MAX;
     int index = 0;
@@ -84,4 +79,20 @@ int minimumDist(int dist[], bool visited[])
         }
     }
     return index;
+}
+
+void PrintNodeDistances(int dist[])
+{
+    cout << "Node Distance From Starting Node" << endl;
+
+    for (int i = 0; i < DIMENSION_SIZE; i++)
+    {
+        cout << LetterEquiv(i) << "   " << dist[i] << endl;
+    }
+}
+
+// Tying Array Space to Ascii value
+char LetterEquiv(int val)
+{
+    return (char)(val + 65);
 }
