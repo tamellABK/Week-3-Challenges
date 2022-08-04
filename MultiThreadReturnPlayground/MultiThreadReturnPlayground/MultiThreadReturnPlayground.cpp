@@ -3,23 +3,38 @@
 
 using namespace std;
 
-bool shouldStop = false;
 int const UPPER_BOUND = 100000;
 
-void getSize(string word, int* toReturn)
+bool shouldStop = false;
+
+void ConstantStringConcat(string word, int* toReturnStringSize);
+void getPlayerInput();
+
+int main()
 {
-    string indivWord = word;
-    while(!shouldStop)
-    {
-        word += indivWord;
-        if (UPPER_BOUND < word.size())
-        {
-            word = "";
-        }
-    }
-    *toReturn = word.size();
+    int currentWordSize;
+    thread GetSizeThread(ConstantStringConcat, "foo", &currentWordSize);
+
+    getPlayerInput();
+
+    GetSizeThread.join();
+    cout << currentWordSize;
 }
 
+void ConstantStringConcat(string word, int* toReturnStringSize)
+{
+    // Continuously concat word and get size
+    string indivWord = word;
+    while (!shouldStop)
+    {
+        word += indivWord;
+        // If reaching upper bound reset word
+        if (UPPER_BOUND < word.size()) word = "";
+    }
+    *toReturnStringSize = word.size();
+}
+
+// Wait until player inputs "Q" to set stop
 void getPlayerInput()
 {
     char input = ' ';
@@ -30,15 +45,4 @@ void getPlayerInput()
         cin >> input;
     }
     shouldStop = true;
-}
-
-int main()
-{
-    int fin = 0;
-    thread GetSizeThread(getSize, "foo", &fin);
-
-    getPlayerInput();
-
-    GetSizeThread.join();
-    cout << fin;
 }
